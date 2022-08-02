@@ -1,0 +1,169 @@
+??+-----------Introduccion-----------
+--Ventajas
+Auditoria de codigo
+Control de cambios en el tiempo
+Uso de etiquetas para versionar
+
+--Desventajas
+Curva de aprendizaje
+Control de archivos <> a txt
+
+//---------------------------------------------------
+??----------------Repositorio y Commits---------------------
+//-----------------------------------------------------
+TODO--Configuracion Basica--
+git config --global user.name "Name"
+git config --global user.mail "mail"
+
+TODO--Creacion de Repositorio (Projectos) "Working directory"
+git init --> Crea una carpeta con referencias para que projecto sea gestionado con git
+
+--Agregar archivos para ser gestionados por git "staging area"
+    git add . (Todos los archivos)-> Agrega a los archivos para tener control y gestionarlo
+    git add "archivo especiffico" --> Se puede especificar un archivo especifico
+    git add js/ "carpeta especifica"
+    git add css/*.css "conjuto de lementos"
+    git add -A
+    git add --all 
+
+--Dejar la gestion de archivos de git
+    git reset css/*scss"nomnbre de archivo o directorio"
+
+--Confirmar de archivos agregados a git "localrepo"
+git commit -m "Commit Message"
+
+--Permite reticficacion del mensaje de una commit
+git commit --amend -m "Message Commit"
+
+--Para controlar y cambiar nombre de un archivo 
+git mv "archivo" "nuevo nombre"
+
+--Para eliminar el archivo con control de git
+git rm "archivo"
+
+--Para regresar en commits y sin ninguna modificacion
+git reset --soft "Id Commit" --> Solo se ubica en el commit pero no se recuperan archivos
+
+--Para recuperar archivos borrados desde un commit
+git reset --hard "ID Commit"
+
+--Para ir a un commit (hitos) evitando cambios realizados desde ese punto
+git reset --mixed
+
+--Para regresar a al commit
+git reset --hard 
+
+!!Ramas 
+Division de trabajo actual con el objetivo de realizar cambios que no formen de la rama principal
+
+--Creacion de Ramas
+git branch "nombre rama"
+
+--Cambio de Ramas
+git checkout "nombre rama"
+git checkout mastes
+    "Los add, archivos y commits son independientes de las ramas y no se pueden 
+    visualizar desde otras ramas"
+
+--Fusion de ramas
+git merge "name"
+
+--Eliminacion de ramas:
+git branch -d "name"
+
+--Creacion e ingreso directa a la rama
+git checkout -b "nombre rama"
+
+??Union de Ramas secundarios con las secundarias: 
+-Ir a la rama principal: git checkout master
+-Unir rama secundaria: git merge "name rama secundaria"
+
+-*Eliminar rama: git branch -d "name rama"
+
+!!Merge
+Los cambios que se realicen sobre un mismo archivo en diferentes ramas que generar cambios por
+separa y esto al momento de unir (merge) podira provocar conflictos de cambios que debemos resolver para
+continuar editando
+
+Para resolver el conflicto se define la estructura borrando los temas en conflicto que hay en el archivo
+y hecho esto realizamos los add, commit, merge.
+
+    ??Fast Fordward: Indica que cuando no hay cambios en la rama principal, puede hacer la union de la rama
+    ??secundaria con la rama principal
+
+!!Etiquetas
+Forma de nombrar a un commit que se van realizando, nos permiten estar seguros de una version y realizar upgrades progresivos
+
+--Creacion de Etiquetas
+git tag "name" --> Se establece a la rama en la que estamos trabajando
+
+--Eliminacion de Etiquetas
+git tag -d "name"
+
+--Creacion de etiqueta con un mensaje en la etiqueta
+git tag -a v1.0.0(version) "Version Incial"
+            1 -> Version Mayor
+            2 -> Cambio moderado "correcion de importancia"
+            3 -> Cambio menor "cambio pequeno no relevante para el usuario"
+
+--Creacion de etiqueta con un Id de commit especifico
+git tag -a "name tag" "id commit" -m "Message" --> Hay valores textuales
+
+??--///////////Mostrar Informacion en git//////////////////--
+Datos de Usuario: git config --global
+Estatus de archivos: git status --> Nos da el estatus de seguimiento
+Mostrar cambios realizados: git diff --> Compara la situacion actual con el commit hecho
+Para revertir situacion a ultimo commit: git checkout .
+Lista de cambios realizados: git log --> Historico de los commits
+Mostrar historico de cambios resumido: git reflog
+Mostrar en que rama nos encontramos:git log --oneline --decorate --all --graph
+Mostrar etiqueta: git tag
+Mostrar eitqueta con detalle: git show etiqueta --> Muestra todo lo que contiene
+
+??--//////////////Alias de Comandos///////////////
+git config --global alias.l "log" --> comando log va hacer igual git l
+
+??--////////////gitignore////////////////
+Permite eviar el seguimiento de archivos en el repo como IDE'S
+*Se crear archivo .gitignore*
+    Agrega el nombre del archivo que no se va a llevar el control
+        "ide-config" --> Archivo especifico
+        "ide-config*" --> Todo lo que comience con ide... en adelante
+        /config --> Directorio
+        .class
+        /node_module/
+
+//?--//////////GitHub///////////////
+--Agregar un repositorio remoto al nuestro projecto
+    git remote add origin git@github.com:IRDCodeI/webStalin.git
+
+--Agregar una rama al reporsitorio remoto
+    git branch -M main 
+
+--Enviar archivos locales al repositorio remoto
+    git push -u origin main
+
+--Copiar repositorios en nuestra maquina locales
+    git clone "url"
+
+//?--//////////GitPull//////////
+Obtiene los ultimo cambios que ocurrieron en los repositorios
+**Git Fetch: Trae los cambios y luego debemos realizar el merge
+**Git Pull: Trae los cambios y se unen directamente en el directorio locales
+
+?--//////////GitFork////////////
+Podemos realizar modificacion en una copia de un repositorio que nos interese
+en nuestros repositorios.
+Los cambios se realizan en la copia de nuestro repositorios
+
+||Opcion Fork de los repositorios||
+
+?--//////////Pull Request///////////
+Opcion New Pull Request para enviar al repositorio que fue hecho fork
+
+
+
+
+
+
+

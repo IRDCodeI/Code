@@ -1,0 +1,82 @@
+*ISOMORFISMO
+JS permite realizar una app completa con un solo lenguaje
+ - FrontEnd (JS)
+ - BackEnd (NodeJS)
+ - Persistencia de Datos (MongoDB, Firebase, ...) "BDD basadas en documentos JSON"
+
+
+?##Podemos Realizar
+ - Diseno y Desarrollo Web
+ - Hacer Videojuegos
+ - Experiencias 3D
+ - Controlar Hardware
+ - Aplicaciones Hibridas
+ - Machine Learning
+
+?##Caracteristicas
+ - Lenguaje de Alto Nivel
+ - Interpretado y Dinamico "Se compila en tiempo de ejecucion"
+ - Debilmente Tipado "No se especifica el tipo de dato, lo que importa es el valor"
+ - Multi Paradigma 
+ - CaseSensitive
+ - No necesita cierre de bloques ";"
+
+?##Estrucutra de Codigo
+  - Identificador debe empezar con letra, $, _, nunca con numeros o caracteres especiales
+  - No se puede repetir el nombre del identificador
+
+    !### Snake_Case
+    - Archivos: my_file_javascript.JS
+    !### UPPER_CASE
+    - Constantes: const UNA_CONSTANTE
+    !### UpperCamelCase
+    - Clases: class SerHumano { ... }
+    !### loweCamelCase
+    - Objetos: unObjeto = { ... }
+    - Primitivos: unaCadena = 'Hola Mundo', unNumero ...
+    - Funciones: function holaMundo (name) { ... }
+    - Instancias: const ajax = new XMLHttpRequest(), ....
+
+?## Palabras Reservadas
+
+A: abstract
+B: boolean, break, byte
+C: case, catch, char, class, const, continue
+D: debugger, default, delete, do, double
+E: else, enum, export, extends
+F: false, final, finally, float, for, function
+G: goto
+I: if, implements, import, in, instanceof, int, interface
+L: let, long
+N: native, new, null
+P: package, private, protected, public
+R: return
+S: short, static, super, switch, synchronized
+T: this, throw, throws, transient, true, try, typeof
+V: var, volatile, void
+W: while, with
+
+? ##Ordenamiento de Codigo
+
+ 1. Importacion de Modulos: Definir la lista de modulos que usemos
+ 2. Declaracion de Variables: Lista de variables a usar
+ 3. Declaracion de Funciones: Declaracion de funciones a usar
+ 4. Ejecucion de Codigo "Instancia de Clases, llamar funciones, ..."
+
+? ##Tipos de Datos JS
+    Todo### Primitivos: Accede directamente al valor
+
+    - String
+    - Number
+    - boolean
+    - null
+    - undefined
+    - NaN
+
+    Todo### Compuestos: Accede a referencia del valor
+
+    - object = {}
+    - array = []
+    - function () {}
+    - Class {}
+    - ...
