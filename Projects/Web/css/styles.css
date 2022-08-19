@@ -1,0 +1,120 @@
+a{
+    text-decoration: none;
+}
+
+.nav{
+    padding: 15px;
+    position: -webkit-sticky;
+    position: sticky;
+    top: -1px;
+    width: 96vw - 5px;
+    background-color: #080808d2;
+    z-index: 1000;
+}
+
+.nav__block{
+    display: flex;
+    margin: 0px;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.nav__element{
+    list-style: none;
+}
+
+.nav__element > a {
+    font-family: 'Raleway', sans-serif;
+    font-size: larger;
+    font-weight: 600;
+    text-decoration: none;
+    letter-spacing: 1px;
+    color: #ffffff;
+}
+
+.hero-block{
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-block::before{
+    content: "";
+    background-image: url('../imgs/Background_Hero.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    opacity: 0.74;
+}
+
+.hero-block__info{
+    position: relative;
+    color: #000000;
+    padding: 10px;
+    text-align: center;
+}
+
+.hero-block__info > img {
+    border: solid 1px #000000;
+    border-radius: 20px;
+}
+
+.hero-block__info > hr {
+    border: 1px solid #000000;
+    margin-bottom: 20px;
+}
+
+.hero-block__subtitle{
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 26px;
+    font-weight: 400;
+    text-transform: uppercase;
+    text-shadow: #ffffff 1px 0px 13px;
+    margin-bottom: 0px;
+}
+
+.hero-block__subtitle b{
+    letter-spacing: 1.8px;
+    color: #ffffff;
+}
+
+.hero-block__information{
+    font-family: 'Raleway', sans-serif;
+    font-size: 20px;
+    font-weight: 500;
+    font-style: italic;
+    text-shadow: #727171;
+}
+
+.hero-block__button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-block__button > label {
+    margin: 15px;
+    padding: 15px;
+    background-color: #414040;
+    border: 1px solid #414040;
+    border-radius: 10px;
+    text-align: center;
+    color: #ffffff;
+}
+
+label > a{
+    padding: 2px;
+    font-family: 'Raleway', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 1.3px;
+    color: #ffffff;
+}

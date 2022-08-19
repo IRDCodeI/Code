@@ -14,6 +14,49 @@
 
 //? Operadores Logicos: Not(!), Or(||), And(&&)
 
+//*------------- Operadores de Cortocircuito
+//Funcionan poniendo dos condiciones con Or o And
+
+function saludo(nombre){
+    nombre = nombre || 'Desconocido'; // --> Operador de Cortocircuito
+    //      Si esta true carga izquierdo, si no carga derecho
+    console.log(`Hola ${nombre}`);
+}
+
+saludo('Stalin');
+saludo();
+
+//OR: Cuando el valor de la izquierda en la expresion siempre pueda validar a true
+//, es el valor que se carga por defecto
+//OR siempre muestra el valor de la izquierda cuando es true
+console.log('Cadena' || 'Value');
+console.log(19 || 'Value');
+console.log(true || 'Value');
+console.log([] || 'Value');
+console.log({} || 'Value');
+
+console.log(false || 'Value');
+console.log(null || 'Value');
+console.log(undefined || 'Value');
+console.log(0 || 'Value');
+
+
+//AND: Cuando el valor de la izquierda en la expresion siempre pueda validar a false,
+// el valor que se carga por defecto
+//Carga el valor de la izquierda cuando sea falso
+
+console.log('Cadena' && 'Value');
+console.log(19 && 'Value');
+console.log(true && 'Value');
+console.log([] && 'Value');
+console.log({} && 'Value');
+
+
+console.log(false && 'Value');
+console.log(null && 'Value');
+console.log(undefined && 'Value');
+console.log(0 && 'Value');
+
 //* ------------Estructura de Control-----------
 //Controla el flujo de la programacion
 
