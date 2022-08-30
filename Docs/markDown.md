@@ -10,6 +10,8 @@ Usado en:
  - GitHub y GitLab (readme.md)
  - GitHub Profile
 
+Doc: [Mardown](https://markdown.es/sintaxis-markdown/)
+
 ## Formato de texto
 
 Texto normal es igual a `<p>` de html.
@@ -103,3 +105,58 @@ Para usar una linea horizontal usamos `*** o --- o ___`
 ### Emojis
 
 Lista [emojis](https://gist.github.com/rxaviers/7360908) para github, copiamos el nombre clave y lo colocamos :blush: 
+
+
+## Tablas
+
+
+Para usar tablas se usa un pie, para indicar inicio y fin de una columna `|` y en la siguiente fila complementamos con `| y - ` para completar una fila
+
+
+**Los pipes pueden estar alienados o no**
+
+| Distribuciones | Disponibles | Version |
+|----------------|-------------|-|
+| Ubuntu         | Si          |1.0.0|
+
+Generador de tablas: [Tables Generator](https://www.tablesgenerator.com/)
+
+
+## Markdown y HTML
+
+No se recomienda, pero aveces se puede usar html, y para esto solo se necesita ingresar o embeber el codigo HTML.
+
+<h1>Codigo HTML</h1>
+
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ40YjpK1gLUSlMHZD7TNEzs-Pp_wx-IaKhOw9hbWhcYNQonh5jJEwYTy_65X0jHUCo7qA&usqp=CAU" witdh=150px height=100px>
+
+## Videos
+
+Se puede simular un video por medio de un gif, y aqui se establece el link en una imagen.
+
+**Simula un video**
+
+[![Ve el video](https://img.youtube.com/vi/1BzzckYqT9w/hqdefault.jpg)](https://www.youtube.com/watch?v=1BzzckYqT9w&list=PLM4HZoZrNapsQ_f6a9275n15riyr-2AnQ&index=9)
+
+## Hack de Texto
+
+Para texto subrayado se usa `<ins>`
+
+<ins>Subrayado</ins>
+
+Texto alineado al centro `<center>`
+
+<center>Texto en el centro</center>
+
+Texto de color `<p style="color:'blue'"></p>`
+
+<p style="color:blue">Texto de color</p>
+
+Links en markdown en nueva pestaña `<a href="..." target="_blank">Otra Pestaña</a>`
+
+<a href="..." target="_blank">Otra Pestaña</a>
+
+## Readme para Github
+
+Crear repo con nuestro nombre de usuario y debe ser publico
+
