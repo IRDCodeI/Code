@@ -221,11 +221,10 @@ label > a{
 */
 
 .container__tech--flex{
-    width: 90vw;
+    width: 100%;
     display: flex;
     flex-direction: column;
     gap: 40px;
-    flex-shrink: 4;
     align-items: center;
 }
 
