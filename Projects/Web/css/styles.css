@@ -7,6 +7,38 @@ a{
     z-index: 0;
 }
 
+.menu{
+    display: none;
+    position: fixed;
+    background-color: #0c0c0cf5;
+    height: 100%;
+    width: 100vw;
+    z-index: 10;
+}
+
+.menu > ul {
+    display: flex;
+    margin: 0px;
+    width: 100%;
+    height: 100%;
+    padding: 0px;
+    flex-direction: column;
+   justify-content: center;
+    align-items: center;
+    gap: 20px 0px;
+}
+
+.item{
+    list-style: none;
+}
+
+.item > a {
+    font-family: 'Raleway', sans-serif;
+    font-size: 30px;
+    font-weight: 700;
+    color: #fff;
+}
+
 /* LandigPage */
 
 .nav{
@@ -409,6 +441,10 @@ body::-webkit-scrollbar-track {
     .nav__menu{
         font-size: 22px;
         display: inline;
+    }
+
+    .nav__logo{
+        margin-top: 20px;
     }
 
     .skew-cc{

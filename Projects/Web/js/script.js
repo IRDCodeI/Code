@@ -1,7 +1,15 @@
+const $btnMenu = document.getElementById("btn-menu");
 const $menu = document.getElementById("menu");
 
-$menu.addEventListener("click", () => {
+$btnMenu.addEventListener("click", () => {
     console.log("Click en el Menu")
+
+    $menu.style.display = "block";
 });
 
-$menu.style.cursor = "pointer";
+$menu.addEventListener("click", () => {
+    $menu.style.display = "none";
+});
+
+$btnMenu.style.cursor = "pointer";
+
