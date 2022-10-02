@@ -9,7 +9,9 @@
     <link rel="stylesheet" href="./css/normalize.css" />
     <link rel="shortcut icon" href="./imgs/RDCode_ico.ico" type="image/x-icon" />
     <link href="https://fonts.googleapis.com/css2?family=Raleway&family=Ubuntu&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <script src="https://kit.fontawesome.com/5934d1665e.js" crossorigin="anonymous"></script>
+    <script src="./js/script.js" type="module"></script>
     <title>RDCode</title>
 </head>
 
@@ -17,38 +19,30 @@
     <div class="menu" id="menu">
         <ul class="menu__items">
             <li class="item item__skills"><a href="#experiencia">Habilidades</a></li>
-            <li class="item item__socials"><a href="#social">Redes Sociales</a></li> 
+            <li class="item item__socials"><a href="#social">Redes Sociales</a></li>
         </ul>
     </div>
     <div class="container">
         <nav class="nav">
             <ul class="nav__block">
                 <li class="nav__element nav__menu"><i id="btn-menu" class="fa-solid fa-bars"></i></li>
-                <li class="nav__element"><a class="nav__element--none"href="#social">Contacto</a></li>
+                <li class="nav__element"><a class="nav__element--none" href="#social">Contacto</a></li>
                 <li class="nav__element"><a href="/index.html" class="nav__logo">RDCode</a></li>
-                <li class="nav__element"><a class="nav__element--none"href="#experiencia">Habilidades</a></li>
+                <li class="nav__element"><a class="nav__element--none" href="#experiencia">Habilidades</a></li>
             </ul>
         </nav>
-        <!--<div class="container-icons">
-            <div class="container-icons--flex">
-                <i class="fa-brands fa-square-facebook"></i>
-                <i class="fa-brands fa-whatsapp"></i>
-                <i class="fa-brands fa-linkedin"></i>
-                <i class="fa-brands fa-github"></i>
-            </div>
-        </div>-->
         <div class="hero-block">
             <div class="hero-block__info">
-                <img class="hero-logo" src="./imgs/Logo-RDCode.jpg" alt="" width="450px" />
-                <p class="hero-block__subtitle">
+                <img class="hero-logo animate__animated animate__backInDown" src="./imgs/Logo-RDCode.jpg" alt="" width="450px" />
+                <p class="hero-block__subtitle animate__animated animate__fadeInBottomLeft">
                     <b>profesionalismo</b> y <b>seriedad</b> en tus proyectos
                 </p>
                 <hr />
-                <span class="hero-block__information">Desarrollamos tus proyectos con las mejores estrategias de
+                <p class="hero-block__information animate__animated animate__fadeInBottomRight">Desarrollamos tus proyectos con las mejores estrategias de
                     <b>planificacion</b> y <b>codificacion</b> para un
-                    <b>negocio exitoso</b>.</span>
+                    <b>negocio exitoso</b>.</p>
                 <div class="hero-block__button">
-                    <label class="btn-grad"><a href="#">Empezar</a></label>
+                    <label class="btn-grad animate__animated animate__slideInUp"><a href="#">Empezar</a></label>
                 </div>
             </div>
         </div>
@@ -60,43 +54,43 @@
                 <div class="container__techs">
                     <div class="container__tech">
                         <div class="container container__techs__type ">
-                            <img src="./imgs/html.png">                    
+                            <img class="animate__animated animate__bounce" src="./imgs/html.png">
                         </div>
                         <p>HTML</p>
                     </div>
                     <div class="container__tech">
                         <div class="container container__techs__type ">
-                            <img src="./imgs/css.png">                    
+                            <img class="animate__animated animate__bounce" src="./imgs/css.png">
                         </div>
                         <p>CSS</p>
                     </div>
                     <div class="container__tech">
                         <div class="container container__techs__type ">
-                            <img src="./imgs/js.png">                    
+                            <img src="./imgs/js.png">
                         </div>
                         <p>Javascript</p>
                     </div>
                     <div class="container__tech">
                         <div class="container container__techs__type ">
-                            <img src="./imgs/git.png">                    
+                            <img src="./imgs/git.png">
                         </div>
                         <p>GIT</p>
                     </div>
                     <div class="container__tech">
                         <div class="container container__techs__type ">
-                            <img src="./imgs/nodejs.png">                    
+                            <img src="./imgs/nodejs.png">
                         </div>
                         <p>NodeJS</p>
                     </div>
                     <div class="container__tech">
                         <div class="container container__techs__type ">
-                            <img src="./imgs/wordpress.png">                    
+                            <img src="./imgs/wordpress.png">
                         </div>
                         <p>Wordpress</p>
                     </div>
                 </div>
                 <div class="container__techs">
-                    
+
                 </div>
             </div>
         </div>
@@ -112,7 +106,8 @@
                     <p>Facebook</p>
                 </div>
                 <div class="social__icon">
-                    <a href="https://www.linkedin.com/in/stalin-david-pillajo-masache-2945ba206/" class="container__social__icon linkedi">
+                    <a href="https://www.linkedin.com/in/stalin-david-pillajo-masache-2945ba206/"
+                        class="container__social__icon linkedi">
                         <i class="fa-brands fa-linkedin"></i>
                     </a>
                     <p>LinkedIn</p>
@@ -145,6 +140,6 @@
             </div>
         </div>
     </footer>
-    <script src="./js/script.js"></script>
 </body>
+
 </html>
