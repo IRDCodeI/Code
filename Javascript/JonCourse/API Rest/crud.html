@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD</title>
+</head>
+<body>
+    <h1>CRUD API REST AJAX</h1>
+    <section class="crud">
+        <article>
+            <h2 class="crud-title">Agregar Posts</h2>
+            <form class="crud-form">
+                <input type="text" name="title" placeholder="Post Title" required>
+                <button type="submit">Enviar</button>
+                <input type="hidden" name="action">
+            </form>
+        </article>
+        <article>
+            <h2>Ver Posts</h2>
+            <table class="crud-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Post Title</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </article>
+    </section>
+    <template id="crud-template">
+        <tr>
+            <td class="id"></td>
+            <td class="post-title"></td>
+            <td>
+                <button class="btn-edit">Editar</button>
+                <button class="btn-delete">Eliminar</button>
+            </td>
+        </tr>
+    </template>
+    <script src="./APIRest.js"></script>
+</body>
+</html>

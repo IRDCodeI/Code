@@ -90,3 +90,14 @@
 //? metodo GET es solo para solicitar el recurso de manera especifica.
 //?     >> En la informacion enviada en el metodo PUT no es necesario poner el ID 
 //?     en JSON-SERVER ya que este lo agrega automaticamente con el parametro de la URL
+
+//* ------------- CRUD XHR-------------
+
+const d = document,
+    $table = d.querySelector(".crud-table"),
+    $form = d.querySelector(".crud-form"),
+    $title = d.querySelector(".crud-title"),
+    $template = d.querySelector("#crud-template").content,
+    $fragment = d.createDocumentFragment();
+
+
