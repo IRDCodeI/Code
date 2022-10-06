@@ -1,0 +1,13 @@
+{
+    
+        "cadena": "Stalin",
+        "numero": 25,
+        "booleano": true,
+        "arreglo": ["Run", "Programming"],
+        "objeto": {
+            "twitter": "...",
+            "email":" ... "
+        },
+        "nulo": null
+    
+}
