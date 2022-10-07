@@ -100,4 +100,7 @@ const d = document,
     $template = d.querySelector("#crud-template").content,
     $fragment = d.createDocumentFragment();
 
+const xhr = XMLHttpRequest;
+
+
 
