@@ -1,9 +1,9 @@
 const fs = require('node:fs');
 const path = require('node:path');
-const { Client, Collection, GatewayIntentBits } = require('discord.js');
+const { Client, Collection, GatewayIntentBits} = require('discord.js');
 const { token } = require('./config.json');
 
-const client = new Client({intents: [GatewayIntentBits.Guilds]});
+const client = new Client({intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildVoiceStates]});
 
 client.commands = new Collection();
 
@@ -31,8 +31,8 @@ for ( const file of eventFiles ){
     }
 }
 
-client.once('ready', () => {
-    console.log(`Bot ready!`);
+client.once("ready", () => {
+    console.log('Bot ready!!');    
 });
 
 client.on('interactionCreate', async interaction => {
@@ -55,6 +55,5 @@ client.on('interactionCreate', async interaction => {
         });
     }
 });
-
 
 client.login(token);
