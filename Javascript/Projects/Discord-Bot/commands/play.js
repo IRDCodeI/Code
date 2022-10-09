@@ -1,7 +1,6 @@
 const { SlashCommandBuilder } = require('discord.js');
 const { join } = require('node:path');
-const { createReadStream } = require("node:fs");
-const { createAudioPlayer, createAudioResource, joinVoiceChannel, StreamType } = require('@discordjs/voice');
+const { createAudioPlayer, createAudioResource, joinVoiceChannel } = require('@discordjs/voice');
 
 module.exports = {
     data: new SlashCommandBuilder()

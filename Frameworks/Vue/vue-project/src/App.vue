@@ -1,8 +1,11 @@
 <!-- https://bluuweb.github.io/vue-udemy/ -->
 
 <script setup>
-  const name = 'Vue3';
-  const styleColor = "color: blue";
+  import { ref, computed } from 'vue'
+
+  const name = 'VueJS 3';
+  // const countHigger = "color: green;",
+  //       countLower = "color:red";
   const arrayColors = ['blue', 'red', 'green'];
   const arrayFrutas = ["🍎", "🍌", "🍉", "🍓", "🍒"];
   const logged = false;
@@ -12,16 +15,19 @@
             name: "Manzana",
             price: "$1.00",
             description: "Una manzana",
+            stock: 0
         },
         {
             name: "Pera",
             price: "$2.00",
             description: "Una pera",
+            stock: 10
         },
         {
             name: "Naranja",
             price: "$3.00",
             description: "Una naranja",
+            stock: 20 
         },
     ];
 
@@ -30,6 +36,31 @@
         price: "$3.00",
         description: "Una naranja",
     };
+
+    //Metodo - methods
+    const handleClick = (msg) => {
+        console.log(msg);
+    }
+
+    const count = ref(0);
+
+    const increment = () => {
+      console.log(`Contador ${count.value++}`);
+    }
+
+    const decrement = () => {
+      console.log(`Contador ${count.value--}`);
+    }
+
+    const classCounter = computed(() => {
+      if( count.value == 0){
+        return 'zero';
+      }else if ( count.value >= 0){
+        return 'positive'
+      }else if(count.value <= 0){
+        return 'negative'
+      }
+    });
 
 </script>
 
@@ -66,10 +97,37 @@
       {{index}} - {{prop}}: {{value}}
     </li>
   </ul>
+  <template v-for="fruta in arrayObjFrutas" :key="fruta.name">
+        <li v-if="fruta.stock > 0">
+            {{ fruta }}
+        </li>
+  </template>
+  <button v-on:click.right.prevent="handleClick('Texto Derecho')">Activar Derecho</button>
+  <button @click="handleClick('Texto Izquierdo')">Activar Izquierdo</button>
+  <button @click.middle="handleClick('Texto Centro')">Activar Centro</button>
+  <!-- <template v-if="count > 0">
+    <h2 :style="countHigger"> {{ count }}</h2>
+  </template>
+  <template v-else>
+    <h2 :style="countLower"> {{ count }}</h2>
+  </template> -->
+  <!-- <h2 :class=" count >= 0 ? 'positive' : 'negative'">{{count}}</h2> -->
+
+  <h2 :class="classCounter">{{count}}</h2>
+  <button @click="increment()">Aumentar</button>
+  <button @click="decrement()">Disminuir</button>
 </template>
 
 <style>
   h1{
     color: rgb(0, 119, 255);
   }
+
+  .negative{
+    color: red;
+  }
+  .positive{
+    color:green;
+  }
+
 </style>
