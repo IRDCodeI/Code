@@ -1,8 +1,6 @@
 const { SlashCommandBuilder } = require('discord.js');
-const { joinVoiceChannel } = require('@discordjs/voice');
-
-let channel = null,
-    connection = null;
+const { Connection } = require('../class/connection');
+const { player } = require('../class/player');
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -10,20 +8,12 @@ module.exports = {
         .setDescription('Join into a channel voice'),
 
     async execute(interaction) {
-        
-        joinBot(interaction.client);
-        await interaction.reply(`Joined in ${channel}`);
-    } 
-}
 
-function joinBot(client){
-    channel = client.channels.cache.get("841875286786179088");
-    if (!channel) return console.error("The channel does not exist!");
+        let connection = new Connection('841875286786179088', interaction.client);
+        connection = connection.connect();
 
-    connection = joinVoiceChannel({
-        channelId: channel.id,
-        guildId: channel.guild.id,
-        adapterCreator: channel.guild.voiceAdapterCreator,
-    });
+        connection.subscribe(player);
 
+        await interaction.reply(`Joined into a channel`);
+    },
 }

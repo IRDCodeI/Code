@@ -1,37 +1,22 @@
 const { SlashCommandBuilder } = require('discord.js');
 const { join } = require('node:path');
-const { createAudioPlayer, createAudioResource, joinVoiceChannel } = require('@discordjs/voice');
+const { createAudioResource } = require('@discordjs/voice');
+const { player } = require('../class/player');
 
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('play')
         .setDescription('Play youtube song'),
     
-        async execute(interaction){
-
-            playSong(interaction.client);
-            await interaction.reply('Playing song');
-        }
+    async execute(interaction){
+        playSong(interaction.client);
+        await interaction.reply('Playing song');
+    },
 }
 
 function playSong(client){
 
-    const player = createAudioPlayer();
-    let resource = createAudioResource(join(__dirname, 'track.mp3'));
-
-    console.log(resource);
-
-    channel = client.channels.cache.get("841875286786179088");
-
-    connection = joinVoiceChannel({
-        channelId: channel.id,
-        guildId: channel.guild.id,
-        adapterCreator: channel.guild.voiceAdapterCreator
-    }).subscribe(player);
+    let resource = createAudioResource(join(`${process.cwd()}/music`, 'track.mp3'));
 
     player.play(resource);
-
-    player.on('error', error => {
-        console.error(`Error: ${error.message} with resource`);
-    });
 }
