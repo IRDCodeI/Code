@@ -22,7 +22,7 @@ tupla.index('Hola')
 #count(): cuenta cuantas veces aparece un elemento
 tupla.count(100)
 
-#?Conjuntos.- Collecion desordenadas de elementos unicos "Pertenencia a grupos o
+#?Conjuntos.- Coleccion desordenadas de elementos unicos "Pertenencia a grupos o
 #? eliminacion de elementos repetidos"
 #?  > Se usa set()
 #?  > Tambien se define con llaves
