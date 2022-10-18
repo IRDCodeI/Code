@@ -28,7 +28,7 @@ class Persona:
         self.promedio = sorted(self.promedio.items(), key = operator.itemgetter(1), reverse=True)
 
         for nota in enumerate(self.promedio):
-            print(f"{nota[1][0]} - Promedio --> {nota[1][1]}\n ")
+            print(f"{nota[1][0]} - Promedio --> ","{:0.2f}".format(nota[1][1]),"\n")
 
     def mostrar_notas(self): 
         return self.notas 
@@ -37,14 +37,14 @@ julio = Persona("Julio", "Proaño", 1)
 andres = Persona("Andres", "Guerra", 2) 
 diego = Persona("Diego", "Peña", 3) 
 
-julio.agregar_notas([5, 4, 5, 1]) 
+julio.agregar_notas([5, 4, 5.333, 1]) 
 andres.agregar_notas([5, 7, 8, 1]) 
 diego.agregar_notas([3, 3, 2, 1]) 
 
 estudiantes = [julio, andres, diego] 
 
 for estudiante in estudiantes: 
-    print(f"{estudiante.apellido} --> Promedio = {estudiante.get_promedio()}\n ") 
+    print(f"{estudiante.apellido} --> Promedio = ", "{:0.2f}".format(estudiante.get_promedio()),"\n ") 
     #'% 0.2f'% 
 
 julio.ordenar_notas(estudiantes)
