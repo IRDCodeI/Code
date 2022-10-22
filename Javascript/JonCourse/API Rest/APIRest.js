@@ -100,7 +100,31 @@ const d = document,
     $template = d.querySelector("#crud-template").content,
     $fragment = d.createDocumentFragment();
 
-const xhr = XMLHttpRequest;
+//? Objeto de funcion para XHR
+
+const ajax = (options) => {
+    //Destructuracion de objeto options en funcion ajax
+    let {url, method, success, error, data} = options;
+
+    const xhr = new XMLHttpRequest(); // Declaracion objeto XML
+
+    xhr.addEventListener('readystatechange', e => { // Listeners de evento en cambio de estado de XML
+        if(xhr.readyState !== 4) return;    // Cuando este lista XML continua
+
+        if(xhr.status >= 200 && xhr.status <= 300){ //Respuesta del servidor/API
+            let json = JSON.parse(xhr.responseText);    // Parse de respuesta en de texto plano a JSON
+            success(json);
+        }else{
+            let message = xhr.statusText || 'Ocurrio un Error';
+            error(`Error ${xhr.status}: ${message}`);
+        }
+    });
+
+    xhr.open(method || 'GET', url); //Apertura de comunicacion con metodo
+    xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8') // Especificacion de tipo de contenido
+
+    xhr.send(JSON.stringify(data)); //Envio de peticion
+}
 
 
 
