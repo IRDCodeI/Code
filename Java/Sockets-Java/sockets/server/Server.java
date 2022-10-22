@@ -1,39 +1,50 @@
 package sockets.server;
 
 import java.io.*;
-import sockets.connection.Connection;
+import java.net.*;
 
-public class Server extends Connection{
+public class Server{
+    
+    private static int PORT = 6060;
 
-   public Server() throws IOException{
-    super("servidor");
-   }
+    public static void main(String[] args) {
+        BufferedReader input;
+        DataOutputStream output;
+        Socket socket;
+        ServerSocket serverSocket;
 
-   public void startServer()
-   {
-        try{
-            System.out.println("Esperando conexion ...");
+        try {
+            serverSocket = new ServerSocket(PORT);
 
-            cs = ss.accept();
+            System.out.println("Esperando una conexion...");
 
-            System.out.println("Cliente en linea");
+            socket = serverSocket.accept();
 
-            resClient = new DataOutputStream(cs.getOutputStream());
-            
-            resServer.writeUTF("Peticion recibida y aceptada");
+            System.out.println("Cliente conectado");
 
-            BufferedReader input = new BufferedReader(new InputStreamReader(cs.getInputStream()));
+            // Entrada y salida de datos
 
-            while((msjServer = input.readLine()) != null)
-            {
-                System.out.println(msjServer);
-            }
+            input = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            output = new DataOutputStream(socket.getOutputStream());
 
-            System.out.println("Fin de Conexino");
+            System.out.println("Conexion con el cliente exitosa");
 
-            ss.close();
-        }catch (Exception e){
-            System.out.println(e.getMessage());
+            output.writeUTF("Conexion exitosa");
+
+            // Recibo de mensaje
+
+            String msj = input.readLine();
+
+            System.out.println(msj);
+
+            output.writeUTF("Mensaje recibido");
+
+            output.writeUTF("Cerrando conexion");
+
+            serverSocket.close();
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
         }
-   }
+
+    }
 }

@@ -1,28 +1,31 @@
 package sockets.client;
 
-import java.io.DataOutputStream;
-import java.io.IOException;
-import sockets.connection.Connection;
+import java.io.*;
+import java.net.*;
 
-public class Client extends Connection{
+public class Client{
 
-    public Client() throws IOException{
-        super("cliente");
-    }
+// https://unipython.com/sockets-en-java-cliente-y-servidor/ 
 
-    public void startClient()
-    {
+    private static String HOST = "127.0.0.1";
+    private static int PORT = 6060;
+    public static void main(String[] args) {
+        Socket socket;
+        DataOutputStream msj;
+
         try {
-            resServer = new DataOutputStream(cs.getOutputStream());
+            socket = new Socket(HOST, PORT);
 
-            for (int i = 1; i < 2; i++)
-            {
-                resServer.writeUTF("Este es el mensaje " + (i+1));
-            }
+            msj = new DataOutputStream(socket.getOutputStream());
 
-            cs.close();
+            msj.writeUTF("Hola desde el cliente");
+
+            socket.close();
+        } catch (UnknownHostException e) {
+            System.out.println(e.getMessage());
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
     }
+
 }
