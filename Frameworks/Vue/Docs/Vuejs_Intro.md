@@ -125,3 +125,56 @@ onMounted(() => {
 
 - API de opciones para no usar compilacion o para baja complejidad 
 - API composicion + SFC para aplicaciones completas
+
+---
+
+# Projecto VueJS
+
+## Creacion de Projectos VueJS
+
+```
+  npm init vue
+  cd <project-name>
+  npm install
+  npm run dev
+```
+
+### Compilar para produccion
+
+```
+npm run build
+```
+
+## Montaje de Aplicacion
+
+Se usa el metodo mount() tiene como argumento "contendor" un string o elemento del DOM.
+  - __E.Contenedor__ no es considerado un elemento del DOM
+  - Llama a la instancia del componente raiz
+    - No se llama a la instancia de la aplicacion2
+```
+<div id="app"></div>
+app.mount("#app")
+```
+## Configuracion de Aplicaciones
+
+Instancia de app permite usar un objeto `.config()` para configuracion opciones a nivel de aplicacion
+  * Manejadores de errores en componentes descendientes
+
+```
+app.config.errorHandler = (err) => {
+  /* handle error */
+}
+```
+
+Permite registrar app-scoped assets
+  - Hace que 'TodoDelete Button' este disponible en cualquier lugar de la   apilcacion
+
+```
+app.component('TodoDeleteButton', TodoDeleteButton)
+```
+__Todas las configuracion de registro o errores por ejemplo se debe realizar antes de montar la aplicacion__
+
+### Montaje de Multiples aplicaciones
+___
+
+createApp API permite instanciar multiples aplcaciones y que estas coexistan en la misma pagina cada una con su configuracion y global-assests

@@ -65,6 +65,7 @@
 </script>
 
 <template>
+  <h1>Fundamentos VueJS</h1>
   <h1>{{ name.toUpperCase() }}</h1> 
   <h2 :style="`color: ${arrayColors[2]}`"> VueJS Color </h2>
   <h2>{{ arrayColors }}</h2>

@@ -3,8 +3,6 @@ package sockets.client;
 import java.io.*; // Paquete para trabajar con I/O del S.O
 import java.net.*; // Paquete para comunicacion de red
 
-import javax.xml.crypto.Data;
-
 public class Client{
 
 // https://unipython.com/sockets-en-java-cliente-y-servidor/ 
