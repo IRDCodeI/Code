@@ -48,11 +48,15 @@ def service_connection(key, mask):
             sent = sock.send(data.outb)  # Should be ready to write
             data.outb = data.outb[sent:]
 
+#[(SelectorKey(fileobj=<socket.socket fd=5, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, 
+#   proto=0, laddr=('127.0.0.1', 6060), raddr=('127.0.0.1', 34338)>, 
+# fd=5, events=3, data=namespace(addr=('127.0.0.1', 34338), inb=b'', outb=b'')), 3)] 
+
 try:
     while True:
         events = sel.select(timeout=None)
         for key, mask in events:
-            if key.data is None:
+            if key.data is None:                
                 accept_wrapper(key.fileobj)
             else:
                 service_connection(key, mask)
