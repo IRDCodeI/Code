@@ -54,6 +54,11 @@ Servidor comienza asociando una red con `bind()` ...
 
 ## Socket Multiconexion
 
+Uso de `select()` para verificar la finalizaicon de I/O en mas de un socket.
+
+El modulo de `selectors` permite una multiplexacion de I/O mas eficiente
+- Permite crear un event-loop de manera sincronica
+
 ## Referencias
 
 ### Sockets
