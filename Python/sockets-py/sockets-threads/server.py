@@ -32,6 +32,7 @@ try:
 except Exception as e:
     logging.error(str(e))
 
+
 while True:
     logging.debug("Waiting a connection")
     conn, addr = server_socket.accept()
