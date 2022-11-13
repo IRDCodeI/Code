@@ -1,5 +1,5 @@
-import random
-import time
+import random #Modulo para implementar generador de numeros
+import time #Modulo que provee varias funciones relaciones con el tiempo
 
 class Mercado(object):
     def __init__(self, mercadonombre, symbols):
