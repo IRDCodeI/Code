@@ -14,10 +14,10 @@ def get_data(conn, addr):
     time.sleep(5)
 
     if not data:
-        logging.critical('!Not data recived from client!')
+        logging.critical('!Not data received from client!')
         return 
     else:
-        logging.info(f'Cliente {addr[1]}: {data}')
+        logging.info(f'Client {addr[1]}: {data}')
 
 def create_thread(name, target, conn, addr):
         thread = threading.Thread(name = name, target=target, args=(conn, addr))
