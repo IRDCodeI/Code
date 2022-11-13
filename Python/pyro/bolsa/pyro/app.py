@@ -1,15 +1,18 @@
 import time
-import Pyro4
+import Pyro4 # Modulo PYRO para RMC
 
-viewer = Pyro4.Proxy("PYRONAME:pyro.viewer")
+#Proxy: Middleware que intercepta llamada a meotodos  y devuleve los metodos
+# solicitados
 
-viewer.create()
+#PYRONAME: Protocolo que realiza busqeda de objeto en el servidor de nombres
+viewer = Pyro4.Proxy("PYRONAME:pyro.viewer") 
 
+viewer.initialized() 
 bolsa = viewer.start()
 
 while(bolsa != ""):
-    bolsa = viewer.start()
     print(bolsa)
+    bolsa = viewer.start()
 
     time.sleep(1)
 

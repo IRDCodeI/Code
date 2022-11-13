@@ -1,16 +1,16 @@
-import Pyro4
+import Pyro4    # Modulo para RMC
 
-from stockmarket import Mercado
+from stockmarket import Mercado 
 
+#Expone clases para que esten disponibles en
+#el acceso remoto
 @Pyro4.expose
-
 class Viewer:
     def __init___ (self):
         self.mercado = set()
         self.symbols = set()
 
     def start(self):
-        print("Mostrar acciones:", self.symbols)
         acciones_fuentes = {
             mercado.name: mercado.acciones() for mercado in self.mercado
         }
@@ -21,19 +21,20 @@ class Viewer:
                 symbols, value = accion
 
                 if symbols in self.symbols:
+                    print("Enviando: " + symbols)
                     return("{0}, {1}, {2}".format(mercado, symbols, value))
 
-    def create(self):
+    def initialized(self):  #Metodo para inicializar los mercados
         nasdaq = Mercado("NASDAQ", ["APPL", "CSCO", "MSFT", "GOOG"])
         newyork = Mercado("NYSE", ["IBM", "HPQ", "BP"])
 
         self.mercado = {nasdaq, newyork}
         self.symbols = {"IBM","APPL","MSFT","CSCO","GOOG"}
 
-deamon = Pyro4.Daemon()
-ns = Pyro4.locateNS()
-uri = deamon.register(Viewer)
-ns.register("pyro.viewer", uri)
+deamon = Pyro4.Daemon() # Metodo para atender solicitudes entrantes
+ns = Pyro4.locateNS()   # Proxy para segumiento de objetos en la red
+uri = deamon.register(Viewer) #Registra un objeto bajo un ID (uri) 
+ns.register("pyro.viewer", uri) #Asocia un nombre logico con una URI
 print("Esperando Solicitudes")
 
-deamon.requestLoop()
+deamon.requestLoop() #Loop para servir peticiones entrantes
