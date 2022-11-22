@@ -2,9 +2,9 @@ import random as rd
 import Pyro4
 
 @Pyro4.expose
-class Bank:
+class Bank(object):
 
-    clients = set()
+    clients = {}
 
     def withdraw(self, account, mount):
         for e in self.clients:
@@ -29,13 +29,18 @@ class Bank:
 
         print(f"Account: {account} transfer to {account_b} mount of {mount}")
 
-    def add_clients(self, *args):
-        for arg in args:
-            self.clients.add(arg)
-
     def list_clients(self):
         for e in self.clients:
             print(f"Account: {e.account} - Credit: {e.credit}")
+
+    # @property
+    # def client(self):
+    #     return self.clients
+
+    # @client.setter
+    # def add_clients(self, clients):
+    #     self.clients = clients
+
 
 daemon = Pyro4.Daemon()
 ns = Pyro4.locateNS()
