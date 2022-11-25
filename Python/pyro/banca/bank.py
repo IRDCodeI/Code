@@ -1,10 +1,13 @@
 import random as rd
 import Pyro4
 
+from clients import Client
+
 @Pyro4.expose
 class Bank(object):
 
-    clients = {}
+    def __init__(self):
+        self.clients = set()
 
     def withdraw(self, account, mount):
         for e in self.clients:
@@ -33,13 +36,11 @@ class Bank(object):
         for e in self.clients:
             print(f"Account: {e.account} - Credit: {e.credit}")
 
-    # @property
-    # def client(self):
-    #     return self.clients
-
-    # @client.setter
-    # def add_clients(self, clients):
-    #     self.clients = clients
+    def add_user(self, client, credit):
+        c = Client(client, credit)
+        self.clients.add(c)
+        print(f"User {client} added!")
+        
 
 
 daemon = Pyro4.Daemon()
@@ -47,6 +48,6 @@ ns = Pyro4.locateNS()
 
 uri = daemon.register(Bank)
 ns.register("pyro.bank", uri)
-print("Wait for requests")
 
+print("Wait for requests")
 daemon.requestLoop()
