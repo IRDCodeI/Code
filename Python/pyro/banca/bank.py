@@ -14,14 +14,14 @@ class Bank(object):
             if e.account == account:
                 e.credit = e.credit - mount
 
-        print(f"Account: {account} remove {mount}$")
+        return(f"Account: {account} remove {mount}$")
 
     def deposit(self, account, mount):
         for e in self.clients:
             if e.account == account:
                 e.credit = e.credit + mount
         
-        print(f"Account: {account} add {mount}$")
+        return(f"Account: {account} add {mount}$")
 
     def transfer(self, account, account_b, mount):
         for e in self.clients:
@@ -30,18 +30,21 @@ class Bank(object):
             if e.account == account_b:
                 e.credit = e.credit + mount
 
-        print(f"Account: {account} transfer to {account_b} mount of {mount}")
+        return(f"Account: {account} transfer to {account_b} mount of {mount}")
 
     def list_clients(self):
         for e in self.clients:
-            print(f"Account: {e.account} - Credit: {e.credit}")
+            yield(f"Account: {e.account} - Credit: {e.credit}")
 
     def add_user(self, client, credit):
         c = Client(client, credit)
         self.clients.add(c)
-        print(f"User {client} added!")
-        
-
+        return(f"User {client} added!")
+       
+    def view_user(self, account):
+        for e in self.clients:
+            if(e.account == account):
+                return (f"Account: {e.account} - Credits: {e.credit}")
 
 daemon = Pyro4.Daemon()
 ns = Pyro4.locateNS()
