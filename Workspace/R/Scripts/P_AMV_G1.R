@@ -1,0 +1,306 @@
+# ***************************************************************
+#                          Librerias
+# ***************************************************************
+
+install.packages("VIM","ggplot2","cowplot","reader","GGally",dependencies = T)
+
+library(VIM)
+library(ggplot2)
+library(cowplot)
+library(readr)
+library(GGally)
+
+# ***************************************************************
+#                          Funciones
+# ***************************************************************
+
+summary_model_mult <- function(y_name,cR,dXY,p_values,f_value,vA,vI,th,cXY, ...){
+  
+  cat("********************************************\n")
+  cat("\t", y_name, "~ ")
+  for (i in 1:...length()){
+    cat(...elt(i), " + ")
+  }
+  cat("\n********************************************\n\n")
+
+  cat("Ecuacion de Regresion Lineal Estimada \n")
+  cat("ERL: ", "y = ")
+  for(i in cR){
+    cat(i,"(x)","+")
+  }
+  cat("\n\n")
+  
+  cat("Prueba de Bondad de Ajuste \n")
+  cat("Cof.Determinacion: ", dXY , "\n\n")
+  
+  cat("Prueba de Significancia \n")
+  cat("P-Value: 0.01","\n >> P-Value-t: \n")
+  
+  for(i in p_values){
+    cat("\t",i,"\n")
+  }
+  cat(" >> P-Value-f: ", f_value,"\n\n")
+  
+  cat("Valores Atipicos e Influyentes \n")
+  cat("Valores Atipicos: ", vA, "\t Valores Influyentes ( th =",th,"): ", vI, "\n\n")
+  
+  cat("Multicolinealidad (Correlacion) \n")
+  print(cor(cXY))
+}
+
+linear_model_multiple <- function(y, y_name, ... ){
+  if(...length() == 4){
+    
+    reg = lm(y ~ ...elt(1) + ...elt(2))
+    yEstimada = reg$coefficients[1] + reg$coefficients[2] * ...elt(1) + reg$coefficients[3] * ...elt(2)
+    
+    cR = summary(reg)[["coefficients"]][,1]
+    
+    tAC = anova(reg)[,2]
+   
+    SCR = sum(tAC[1:2])
+    STC = sum(tAC[1:3])
+    d = SCR/STC
+    dXY = 1 - (1-d*((length(...elt(1))-1)/(length(...elt(1))-2-1)))  
+    
+    t_values = summary(reg)[["coefficients"]][, "t value"][2:3]
+    f_static = summary(reg)[["fstatistic"]]
+    f_value = pf(f_static[1], f_static[2], f_static[3], lower.tail = FALSE)
+      
+    x1 = ...elt(1)
+    x2 = ...elt(2)
+    cXY = cbind(y,x1,x2)
+    
+    rReg = y - yEstimada
+    rStd = rstandard(reg)
+    vA = sum((rStd > 2)*1) + sum((rStd < -2)*1)
+    
+    th = (3*(2)+1)/length(...elt(2))
+    hi = influence(reg)$hat
+    vI = sum((hi > th)*1)
+    
+    p_norm = qqnorm(c(1:length(...elt(1))),plot.it = FALSE)$x
+    
+    summary_model_mult("Frecuencia",cR,dXY,t_values,f_value,vA,vI,th,cXY,...elt(3),...elt(4))
+    
+    plot_data_residuals_analysis(yEstimada,rReg,rStd,p_norm)
+    
+    
+    
+  }else if( ...length() == 6){
+    
+    reg = lm(y ~ ...elt(1) + ...elt(2) + ...elt(3))
+    yEstimada = reg$coefficients[1] + reg$coefficients[2] * ...elt(1) + reg$coefficients[3] * ...elt(2) + reg$coefficients[4] * ...elt(3)
+    
+    cR = summary(reg)[["coefficients"]][,1]
+    
+    tAC = anova(reg)[,2]
+    
+    SCR = sum(tAC[1:3])
+    STC = sum(tAC[1:4])
+    d = SCR/STC
+    dXY = 1 - (1-d*((length(...elt(1))-1)/(length(...elt(1))-3-1)))  
+    
+    t_values = summary(reg)[["coefficients"]][, "t value"][2:4]
+    f_static = summary(reg)[["fstatistic"]]
+    f_value = pf(f_static[1], f_static[2], f_static[3], lower.tail = FALSE)
+    
+    x1 = ...elt(1)
+    x2 = ...elt(2)
+    x3 = ...elt(3)
+    cXY = cbind(y,x1,x2,x3)
+    
+    rReg = y - yEstimada
+    rStd = rstandard(reg)
+    vA = sum((rStd > 2)*1) + sum((rStd < -2)*1)
+    
+    th = (3*(3)+1)/length(...elt(2))
+    hi = influence(reg)$hat
+    vI = sum((hi > th)*1)
+    
+    p_norm = qqnorm(c(1:length(...elt(1))),plot.it = FALSE)$x
+    
+    summary_model_mult("Frecuencia",cR,dXY,t_values,f_value,vA,vI,th,cXY,...elt(4),...elt(5), ...elt(6))
+    
+    plot_data_residuals_analysis(yEstimada,rReg,rStd,p_norm)
+    
+  }else if( ...length() == 8){
+    
+    reg = lm(y ~ ...elt(1) + ...elt(2) + ...elt(3) + ...elt(4))
+    yEstimada = reg$coefficients[1] + reg$coefficients[2] * ...elt(1) + reg$coefficients[3] * ...elt(2) + reg$coefficients[4] * ...elt(3) + reg$coefficients[5] * ...elt(4)
+    
+    cR = summary(reg)[["coefficients"]][,1]
+    
+    tAC = anova(reg)[,2]
+    
+    SCR = sum(tAC[1:4])
+    STC = sum(tAC[1:5])
+    d = SCR/STC
+    dXY = 1 - (1-d*((length(...elt(1))-1)/(length(...elt(1))-3-1)))  
+    
+    t_values = summary(reg)[["coefficients"]][, "t value"][2:5]
+    f_static = summary(reg)[["fstatistic"]]
+    f_value = pf(f_static[1], f_static[2], f_static[3], lower.tail = FALSE)
+    
+    x1 = ...elt(1)
+    x2 = ...elt(2)
+    x3 = ...elt(3)
+    x4 = ...elt(4)
+    cXY = cbind(y,x1,x2,x3,x4)
+    
+    rReg = y - yEstimada
+    rStd = rstandard(reg)
+    vA = sum((rStd > 2)*1) + sum((rStd < -2)*1)
+    
+    th = (3*(4)+1)/length(...elt(2))
+    hi = influence(reg)$hat
+    vI = sum((hi > th)*1)
+    
+    p_norm = qqnorm(c(1:length(...elt(1))),plot.it = FALSE)$x
+    
+    summary_model_mult("Frecuencia",cR,dXY,t_values,f_value,vA,vI,th,cXY,...elt(5),...elt(6), ...elt(7), ...elt(8))
+    
+    plot_data_residuals_analysis(yEstimada,rReg,rStd,p_norm)
+    
+  }else{
+    print("Error numero no valido de variables")
+  }
+}
+
+plot_data_histogram <- function(x, x_name, bar_size, title){
+  ggplot(data = data, aes(x = x)) + 
+    geom_histogram(aes(fill = after_stat(count)),color = "gray", binwidth = bar_size, alpha = 0.9) +
+    scale_x_continuous(name = x_name) +
+    scale_y_continuous(name = "Frecuencia") +
+    scale_fill_gradient("Frecuencia", low = "#373B44", high = "#4286f4") +
+    ggtitle(title)+
+    theme_gray()
+}
+
+plot_data_residuals_analysis <- function(y_estimada, residual, r_standars, p_norm){
+  
+  plot_linear <- ggplot()
+  
+  plot_variance <- ggplot(data = data, aes(y_estimada,r_standars,)) +
+    geom_point(color = "#2B4162",alpha = 0.8) +
+    scale_x_continuous(name = "Valores Estimados") +
+    scale_y_continuous(name = "Residuales estandarizados", limits = c(-2.5,2.5)) +
+    theme_grey()
+  
+  plot_norm <- ggplot(data = data, aes(p_norm,sort(r_standars))) + 
+    geom_point(color = "#2B4162",alpha = 0.8) +
+    scale_x_continuous(name = "Puntos Normales", limits = c(-4,4)) +
+    scale_y_continuous(name = "Residuales estandarizados Ordenados", limits = c(-4,4)) +
+    geom_abline(intercept = 0, slope = 1, size = 1, color = "#00A878") +
+    theme_grey()
+  
+  plot_independ <- ggplot(data = data, aes(c(1:4845),residual)) +
+    geom_point(color = "#2B4162",alpha = 0.8) +
+    scale_x_continuous(name = "x") +
+    scale_y_continuous(name = "Residuales") +
+    theme_grey()
+  
+  plot_grid(plot_variance, plot_norm, align = "h", labels = c('Varianza','Normalidad', 'Independencia'), label_size = 16, hjust = -0.5, vjust = 1.5)
+}
+
+plot_data_correlation <- function(dat){
+  ggpairs(data = dat,columns = 5:9, title = "Multicolinealidad", aes(color = Type, alpha = 0.5))
+}
+
+# ***************************************************************
+#                      Limpieza de Datos
+# ***************************************************************
+
+set.seed(1)
+
+data <- read.csv("https://raw.githubusercontent.com/IRDCodeI/GPU_CPU_LM/478b387ef9e4558e28a6f94776ba32c0d9b0c7c4/Dataset.csv", header=TRUE, sep=",")
+#data <- data[1:500,]
+data_csv <- data
+
+knn = kNN(data, variable = c("TDP..W.","Die.Size..mm.2.","Transistors..million."))
+
+y = data[,9] # -> Frecuencia
+x1 = data[,5] # --> Tamanio del procesador
+x2 = knn$TDP..W. # --> TDP
+x3 = knn$Die.Size..mm.2. # --> Tamanio Matriz
+x4 = knn$Transistors..million. # --> Transistores
+
+data = na.omit(data.frame(cbind(y,x1,x2,x3,x4)))
+
+rm("y","x1","x2","x3","x4","knn")
+
+# ***************************************************************
+#                               Datos
+# ***************************************************************
+
+freq = data[,1] #Variable dependiente
+prcsz = data[,2]  #Variable independiente
+tdp = data[,3]    #Variable independiente
+diesz = data[,4]  #Variable independiente
+transs = data[,5] #Variable independiente
+
+# --> Distrbucion de los Datos
+
+plot_data_histogram(prcsz, "Process Size (nm)", 15, "Histograma del Tamaño del Procesador")
+plot_data_histogram(tdp, "Thermal Desing Power (W)", 60, "Histograma del TDP")
+plot_data_histogram(diesz,"Die size (mm^2)", 20, "Histograma del Tamaño de la Matriz del procesador")
+plot_data_histogram(transs, "Transistors (Millon)", 3000, "Histograma de la Cantidad de Transistores")
+
+# ***************************************************************
+#                Modelos de Regresion Lineal Multiple
+# ***************************************************************
+
+# ---- Correlacion de Datos ----
+
+plot_data_correlation(data_csv)
+
+# ------ 2 Variables -----
+
+# --> freq ~ prcsz + tdp
+
+linear_model_multiple(freq, "Frecuencia", prcsz, tdp, "T.Procesador", "TDP")
+
+# --> freq ~ prcsz + diesz
+
+linear_model_multiple(freq, "Frecuencia", prcsz, diesz, "T.Procesador", "T.Matriz")
+
+# --> freq ~ prcsz + transs
+
+linear_model_multiple(freq, "Frecuencia", prcsz, transs, "T.Procesador", "Transistores")
+
+# --> freq ~ tdp + diesz
+
+linear_model_multiple(freq, "Frecuencia", tdp, diesz, "TDP", "T.Matriz")
+
+# --> freq ~ tdp + transs
+
+linear_model_multiple(freq, "Frecuencia", tdp, transs, "TDO", "Transistores")
+
+# --> freq ~ diesz + transs
+
+linear_model_multiple(freq, "Frecuencia", diesz, transs, "T.Matriz", "Transistores")
+
+# ------ 3 Variables -----
+
+# --> freq ~ prcsz + tdp + diesz
+
+linear_model_multiple(freq, "Frecuencia", prcsz, tdp, diesz, "T.Procesador", "TDP", "T.Matriz")
+
+# --> freq ~ prcsz + tdp + transs
+
+linear_model_multiple(freq, "Frecuencia", prcsz, tdp, transs, "T.Procesador", "TDP", "Transistores")
+
+# --> freq ~ tdp + diesz + transs
+
+linear_model_multiple(freq, "Frecuencia", tdp, diesz, transs, "TDP", "T.Matriz", "Transistores")
+
+# --> freq ~ transs + prcsz + diesz
+
+linear_model_multiple(freq, "Frecuencia", transs, prcsz, diesz, "Transistores", "T.Procesador", "T.Matriz")
+
+# ------ 4 Variables -----
+
+# --> freq ~ prcsz + tdp+ diesz + transs
+
+linear_model_multiple(freq, "Frecuencia", prcsz, tdp, diesz, transs, "T.Procesador", "TDP", "T.Matriz", "Transistores")
+
