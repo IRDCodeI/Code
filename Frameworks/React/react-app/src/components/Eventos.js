@@ -92,3 +92,45 @@ export class EventosES7 extends Component{
         );
     }
 }
+
+//* Eventos Nativos, Sintenticos & Personalizados
+// Asignacion de eventos con mas paraemtros a los componentes
+// SyntheticEvent son los manejados por React
+
+// function Button(props){ // Componente de react personalizado se pasa con prop
+//     return(<button onClick={props.myOnClick}>Boton como componente</button>)
+// }
+
+// const Button = (props) => {
+//     return(<button onClick={props.myOnClick}>Boton como componente</button>)
+// }
+
+const Button = ({myOnClick}) => { //Destructuracion
+    return(<button onClick={myOnClick}>Boton como componente</button>)
+}
+
+export class MasSobreEventos extends Component{
+    
+    // Funcion manejadora de evento solo puede recibir el elemento en si
+    // React envuelve el evento nativo del navegador y da soporte en donde se ejecuta
+    // teniendo un mejor control de los eventos en react.
+
+    handleClick = (e, msj) => {//handle: Manejar
+        console.log(e)
+        console.log(e.nativeEvent) // Evento original de JS
+        console.log(e.target)
+        console.log(e.nativeEvent.target)
+        console.log(msj)
+    }
+
+    render(){
+        return(
+            <div>
+                <h2>Mas Sobre Eventos</h2>
+                <button onClick={(e) => this.handleClick(e, 'Hola con parametro en evento')}>Saludar</button> 
+                <Button myOnClick={(e) => this.handleClick(e, 'Hola con parametro en evento')}/>
+
+            </div>
+        )
+    }
+}
