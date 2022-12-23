@@ -22,4 +22,5 @@ Mucho mejor que class components debido a que se toma base JS y computadoras no 
 Permite tener estado y logica en componentes funcionales (Antes solo presentacion "tontos").
 
 - Se usa destructuracion del paquete de react
-- Usa un valor del estado y metodo para actualizarlo [value, setValue]
+- Usa un valor del estado y metodo para actualizarlo [value, setValue], cada variable del estado tiene una funcion.
+- Por cada valor del estado se usa la variable destructurada
