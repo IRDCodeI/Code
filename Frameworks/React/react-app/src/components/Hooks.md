@@ -24,3 +24,12 @@ Permite tener estado y logica en componentes funcionales (Antes solo presentacio
 - Se usa destructuracion del paquete de react
 - Usa un valor del estado y metodo para actualizarlo [value, setValue], cada variable del estado tiene una funcion.
 - Por cada valor del estado se usa la variable destructurada
+
+### useEffect
+
+Permite usar el cliclo de vida osea que combina funciones:
+- componenteDidMount()
+- componentDidUpdate()
+- componentWillUnmount()
+
+Sintaxis cambia segun lo que se trabaja
