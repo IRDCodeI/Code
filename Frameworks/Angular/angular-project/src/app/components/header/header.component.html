@@ -1,0 +1,10 @@
+<p>header works!</p>
+<div>{{nombre}}</div> <!--Interpolacion de Datos JS-->
+<button (click)="nombre='Carlos'">Cambiar</button>
+<button (click)="changeName()">Cambiar</button>
+<div>{{contador}}</div>
+<button (click)="sum()">+1</button>
+<ul>
+    <li *ngFor="let num of arr">{{num}}</li>
+</ul>
+<button (click)="add()">Add Element</button>
