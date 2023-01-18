@@ -1,0 +1,58 @@
+<h2>ngIf</h2>
+<button *ngIf="!isLogged">Iniciar Sesión</button>
+<button *ngIf="isLogged">Registrarse</button>
+
+<h2>ngIF with Template-Container</h2>
+<!--Contenedor de Angular-->
+<!-- Componente Angular que Agrupa contenido pero sin renderizar una etiqueta-->
+<ng-container *ngIf="!isLogged; else logueado">
+    <button (click)="isLogged = true">Iniciar Sesión</button>
+    <button>Registrarse</button>
+    <button (click)="level = level + 1">Level</button>
+</ng-container>
+
+<!--Template (Plantilla)-->
+<!--Componente que define una estructura que se le permite dar un nombre-->
+<ng-template #logueado>
+    <button>Ir a administración</button>
+    <button>Ir a mi perfil</button>
+    <button (click)="isLogged = false">Cerra Sesión</button>
+</ng-template>
+<button *ngIf="level >= 10">Max Level</button>
+
+<h2>Atributos, Eventos y ngModel</h2>
+<!--Atributos-->
+<!--Atributos HTML en angular dinámicos-->
+<button [disabled]="isDisabled">Titulo</button>
+
+<!--Eventos-->
+<button (click)="isDisabled = !isDisabled; 
+    isActivated ='Activar'? 'Desactivar':'Activar'">{{isActivated}}</button>
+
+<!--ngModel-->
+<!-- Atributo para formularios el cual actúa como evento y atributo a la vez-->
+<!-- Atributo: [] "Valor del input/variable" -->
+<!-- Evento: () "Asignacion de valor del input a variable"-->
+<!-- Ambos: [()] "Asignacion de valor y valor del input" -->
+
+<!-- ngModelChange -->
+<!-- Paso de eventos con $event -->
+
+<h3>Nombre con ngModel: {{data}}</h3>
+<input type="text" [(ngModel)]="data" (ngModelChange)="log($event)">
+
+<h3>Seleccion con ngModel: {{typeSelected}}</h3>
+<select [(ngModel)]="typeSelected">
+    <option value="Asus">Asus</option>
+    <option value="Dell">Dell</option>
+    <option value="Hp">Hp</option>
+</select>
+
+<!-- 
+Verificar    
+<h3>Seleccion con Manejador de evento: {{typeSelected}}</h3>
+<select [value]="typeSelected" (change)="typeSelected = $event.target.value">
+    <option value="Asus">Asus</option>
+    <option value="Dell">Dell</option>
+    <option value="Hp">Hp</option>
+</select> -->
