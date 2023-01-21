@@ -56,3 +56,39 @@ Verificar
     <option value="Dell">Dell</option>
     <option value="Hp">Hp</option>
 </select> -->
+
+<!--Servicios-->
+<!-- Archivo que permite comunicar los componentes en Angular -->
+<service-component></service-component>
+
+<!--@Input - @Output-->
+<!-- Comunicacion entre componentes padres e hijos -->
+<h2>@Input - @Output - @Host</h2>
+<app-user-api [data]="user" (borrar)="borrarUsuario($event)" *ngFor="let user of users"></app-user-api>
+
+<!-- Formularion -->
+<!-- Validacion de Formularios, Campos, etc -->
+<!-- Formualrio con validadores -->
+<h2>Formularios</h2>
+<form [formGroup]="form" (ngSubmit)="enviar(form.value)">
+    <label>Name</label>
+    <input formControlName="name" type="text">
+    <br>
+    <label>Email</label>
+    <input formControlName="email" type="email">
+    <!-- Touched se vuelve true cuando se toca el input -->
+    <div *ngIf="form.get('email')?.hasError('required') && form.get('email')?.touched">Email Requerido</div>
+    <br>
+    <label>Clave</label>
+    <input formControlName="clave" type="password">
+    <br>
+    <button [disabled]="form.invalid" type="submit">Enviar</button>
+</form>
+
+<h2>@Alias</h2>
+<!-- Permite evitar ../../../../../.... anidados usando @Alias para ingresar a la carpeta raiz -->
+<!-- Permite acceder a carpetas estaticas del proyecto -->
+
+<h2>Directivas</h2>
+<!-- Son propiedades que se definen a un elemento y que pueden modificar al mismo -->
+<span [Direc]="false">{{data}}</span>
